@@ -44,8 +44,7 @@ Follow these steps to set up the project locally.
 
 #### Clone the Repository:
 
-```sh
-git clone https://github.com/your-username/code-review-ai.git
+git clone https://github.com/HimanshuKumar101/AI-Code-Review.git
 cd code-review-ai
 ```
 
@@ -53,14 +52,12 @@ cd code-review-ai
 
 **For the frontend:**
 
-```sh
 cd client
 npm install
 ```
 
 **For the backend:**
 
-```sh
 cd server
 npm install
 ```
@@ -77,7 +74,6 @@ GOOGLE_GEMINI_KEY=your-api-key-here
 
 #### Start the Backend:
 
-```sh
 cd server
 npm start
 ```
@@ -85,8 +81,6 @@ npm start
 The backend will start at `http://localhost:3000`.
 
 #### Start the Frontend:
-
-```sh
 cd client
 npm start
 ```
