@@ -6,7 +6,8 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-  origin: 'https://ai-code-review-orpin.vercel.app', // ✅ No trailing slash
+  origin: ['https://ai-code-review-orpin.vercel.app'],
+
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
 }))
