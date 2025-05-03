@@ -7,26 +7,15 @@ const app = express();
 // Allow specific Vercel frontend origin
 const allowedOrigins = ['https://ai-code-review-orpin.vercel.app'];
 
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-  }
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  res.header("Access-Control-Allow-Credentials", "true");  // If you're sending cookies or credentials.
-  next();
-});
-
-// Allow CORS middleware
+// CORS configuration with the 'cors' package
 app.use(cors({
   origin: allowedOrigins,
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
-  credentials: true, // Allow credentials if needed
+  credentials: true,  // Allow credentials if needed (cookies, etc.)
 }));
 
-// Preflight handler for CORS
+// Preflight handler for CORS (handled by the 'cors' package)
 app.options('*', (req, res) => {
   res.status(200).end();
 });
