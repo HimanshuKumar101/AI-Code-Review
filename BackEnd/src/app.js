@@ -5,12 +5,12 @@ const cors = require('cors');
 
 const app = express();
 
-
 app.use(cors({
-  origin: '*', 
+  origin: 'https://ai-code-review-orpin.vercel.app', // ✅ No trailing slash
   methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type']
-}));
+  allowedHeaders: ['Content-Type'],
+}))
+
 
 app.options('*', cors());
 
