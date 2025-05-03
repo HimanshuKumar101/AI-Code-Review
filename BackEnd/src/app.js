@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const app = express();
 
-// ✅ Step 1: Allow your Vercel frontend explicitly
+// Allow specific Vercel frontend origin
 const allowedOrigins = ['https://ai-code-review-orpin.vercel.app'];
 
 app.use((req, res, next) => {
@@ -14,29 +14,32 @@ app.use((req, res, next) => {
   }
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Credentials", "true");  // If you're sending cookies or credentials.
   next();
 });
 
-// ✅ Step 2: Also use cors middleware as backup
+// Allow CORS middleware
 app.use(cors({
   origin: allowedOrigins,
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
+  credentials: true, // Allow credentials if needed
 }));
 
-app.use(express.json());
-
-// ✅ Preflight handler
+// Preflight handler for CORS
 app.options('*', (req, res) => {
-  res.sendStatus(200);
+  res.status(200).end();
 });
 
-// ✅ Test route
+// Body parser middleware
+app.use(express.json());
+
+// Test route
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
 
-// ✅ Main route
+// Main route for AI
 app.use("/ai", aiRoutes);
 
 module.exports = app;
