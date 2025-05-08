@@ -6,7 +6,13 @@ const cors = require('cors')
 const app = express()
 
 app.use(cors(
-    
+    {
+        origin: 'https://ai-code-review-orpin.vercel.app',
+        methods: ['GET', 'POST'],
+        credentials: true,
+        optionsSuccessStatus: 200 // For legacy browser support
+    }
+
 ))
 
 
