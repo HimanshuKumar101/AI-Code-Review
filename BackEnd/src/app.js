@@ -1,34 +1,19 @@
-const express = require("express");
-const aiRoutes = require("./routes/ai.routes");
-const cors = require("cors");
 
-const app = express();
+const express = require('express');
+const aiRoutes = require('./routes/ai.routes')
+const cors = require('cors')
 
-// Allow specific Vercel frontend origin
-const allowedOrigins = ['https://ai-code-review-orpin.vercel.app'];
+const app = express()
 
-// CORS configuration with the 'cors' package
-app.use(cors({
-  origin: allowedOrigins,
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type'],
-  credentials: true,  // Allow credentials if needed (cookies, etc.)
-}));
+app.use(cors())
 
-// Preflight handler for CORS (handled by the 'cors' package)
-app.options('*', (req, res) => {
-  res.status(200).end();
-});
 
-// Body parser middleware
-app.use(express.json());
+app.use(express.json())
 
-// Test route
-app.get("/", (req, res) => {
-  res.send("Hello world");
-});
+app.get('/', (req, res) => {
+    res.send('Hello World')
+})
 
-// Main route for AI
-app.use("/ai", aiRoutes);
+app.use('/ai', aiRoutes)
 
-module.exports = app;
+module.exports = app
